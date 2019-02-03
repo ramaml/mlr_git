@@ -1,0 +1,20 @@
+node
+{
+	stage "1. Create Build Output from git"
+	sh "mkdir -p output"
+	sh "mkdir -p input"
+	writeFile file:"output/usefulefile_4mgit.txt",text:"This is a useful file"
+	writeFile file:"output/uselessfile_4mgit.md",text:"This is a useless file"
+	writeFile file:"output/git_4mgit.html",text:"This is a useless file from git repo"
+	stage "2. Archive Build Output from git"
+	archiveArtifacts artifacts:"output/*.txt",excludes:"output/*.md"
+	stage "3. Create files in Input from git"
+	writeFile file:"input/usefulfile_4mgit.txt",text:"this is input useful file"
+	writeFile file:"input/uselessfile_4mgit.txt",text:"this is input useless file"
+	stage "4. Another step from git"
+	sh "touch another_4mgit.html"
+	stage "5. Build the code from git"
+	echo "Building the code from SCM from git"
+	stage "6. Git step from git"
+	sh "touch another_git_repo_4mgit.html"
+}
